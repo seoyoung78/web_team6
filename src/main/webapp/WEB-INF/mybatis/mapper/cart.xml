@@ -17,8 +17,9 @@
 		from cart c, users u, products p, products_img i
 		where c.product_no = p.product_no
 			and p.product_no = i.product_no
-               and c.user_id = u.user_id
-               and i.img_state = 1
+			and c.user_id = u.user_id
+      and c.user_id = #{userId}
+      and i.img_state = 1
 		order by c.regdate desc
 	</select>
 	

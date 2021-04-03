@@ -53,7 +53,7 @@
          			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
          			<div class="col">
 	                 <div class="img-sideline">
-	                     <img src="<%=application.getContextPath() %>${orderProducts.imgSname}"id="changeImg">
+	                     <img src="<%=application.getContextPath()%>/getphoto?imgSname=${orderProducts.imgSname}&imgType=${orderProducts.imgType}" id="changeImg">
 	                 </div>
 	             </div>
 	             <div class="col refund-product-details">
@@ -66,7 +66,9 @@
 	             		</p>
 	             </div>
 	             <div class="col">
-		              <button class="review-btn" type="submit">리뷰 작성</button>
+		              <c:if test="${orderProducts.reviewState eq 0}">
+		             		 <button class="review-btn" type="submit">리뷰 작성</button> 	
+		              </c:if>
 	       			</div>
          		</form>
           </c:forEach>

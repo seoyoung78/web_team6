@@ -4,6 +4,12 @@
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <link href="<%=application.getContextPath() %>/resources/css/cart.css" rel="stylesheet" type="text/css"/>
 
+<script>
+function order = (${size}) => {
+	
+}
+
+</script>
 
   <!-- 컨텐츠 -->
         <div class="cart-content">
@@ -33,7 +39,7 @@
                         			<tr>
                                 <td class="cart-img-line">
                                     <div class="cart-img">
-                                        <img src="${cart.imgSname}">
+                                        <img src="<%=application.getContextPath()%>/getphoto?imgSname=${cart.imgSname}&imgType=${cart.imgType}">
                                     </div>
                                 </td>
                                 <td class="cart-img-name">
@@ -107,7 +113,12 @@
 						</c:forEach>
 						<input type="hidden" name="sum" value="${sum}"/>
           	<input type="hidden" name="count" value="${count}"/>
-         	 	<button class="btn btn-info btn-lg btn-block">결제하기</button>
+         	 	<c:if test="${size eq 0}">
+         	 		<button class="btn btn-info btn-lg btn-block" onclick="alert('장바구니가 비어있습니다.')" type="button">결제하기</button>
+         	 	</c:if>
+         	 	<c:if test="${size > 0}">
+         	 		<button class="btn btn-info btn-lg btn-block">결제하기</button>
+         	 	</c:if>
 					</form>
 								 
         </div>

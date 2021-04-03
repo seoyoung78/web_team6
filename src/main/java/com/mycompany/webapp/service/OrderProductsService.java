@@ -30,7 +30,8 @@ public class OrderProductsService {
 		return list;
 	}
 
-	public void updateReview(int orderNo, int productNo, String userId) {
-		orderProductsDao.update(orderNo, productNo, userId);
+	public void updateReview(String userId, int orderNo, int productNo) {
+		orderProductsDao.update(userId, orderNo, productNo);
+		logger.info(String.valueOf(orderNo));
 	}
 }

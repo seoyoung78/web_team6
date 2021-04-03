@@ -105,22 +105,24 @@ function change () {
                     
                     <div class="product-action">
                         <!-- 장바구니 추가 post -->
-                    <form method="post" name="amountForm" action="addcart" style="display:inline-block">
+                    <form method="post" name="amountForm" action="<%=application.getContextPath()%>/user/addcart" style="display:inline-block">
+                    	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     	<input type="hidden" name="productNo" value="${product.productNo}" />
                     	<input type="hidden" name="userId" value="" />
                     	<input type="hidden" name="price" value="${product.productPrice}" />
                     	<div style="margin-bottom:20%;">
                     		<input type="text" name="amount" value="1" size="3" onchange="change();">
-							<input type="button" value=" + " onclick="add();">
-							<input type="button" value=" - " onclick="del();"><br>
-						</div>
+												<input type="button" value=" + " onclick="add();">
+												<input type="button" value=" - " onclick="del();"><br>
+											</div>
                         <button
                             class="add-to-cart btn btn-default"
                             type="submit"
                             onclick="alert('장바구니에 추가되었습니다.')">add to cart</button>
-					</form>
-					<form method="post" action="addwishlist" style="display:inline-block">
-						<input type="hidden" name="productNo" value="${product.productNo}" />
+										</form>
+										<form method="post" action="<%=application.getContextPath()%>/user/addwishlist" style="display:inline-block">
+											<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+											<input type="hidden" name="productNo" value="${product.productNo}" />
                     	<input type="hidden" name="userId" value="" />
                         <button
                             class="like btn btn-default"
@@ -169,7 +171,7 @@ function change () {
                             <p>${reviews.reviewContent}</p>
                         </div>
                         <div class="col-md-2 review-part-right">
-                        	<a class="btn review-btn" href="<%=application.getContextPath()%>/user/delreview?reviewNo=${reviews.reviewNo}">remove</a>                                                  	                         
+                        	<a class="btn review-btn" href="<%=application.getContextPath()%>/user/delreview?reviewNo=${reviews.reviewNo}&productNo=${product.productNo}">remove</a>                                                  	                         
                         </div>
                     </div>
                 	</div>

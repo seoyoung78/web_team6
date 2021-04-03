@@ -3,6 +3,7 @@
 					 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mycompany.webapp.dao.ReviewsDao">
+	
 	<insert id="insert">
 		insert into reviews
 		values (seq_reviews_review_no.nextval, #{orderNo}, #{productNo}, #{userId}, #{reviewContent}, sysdate)
@@ -52,4 +53,5 @@
 		from reviews r, products p
 		where r.product_no = p.product_no		
 	</select>
+	
 </mapper>

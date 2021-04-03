@@ -58,6 +58,7 @@ public class OrderController {
 		List<Cart> clist = cartService.getCart(userId);
 		logger.info(String.valueOf(clist.size()));
 		model.addAttribute("clist",clist);
+		model.addAttribute("size", clist.size());
 		cartArray = new Cart[clist.size()];
 		return "order/cart";
 	}

@@ -44,7 +44,7 @@
 		           </div>
 		           
 		           <div class="col">
-		               <a href="<%=application.getContextPath()%>/user/purchaseListDetail?orderNo=${order.orderNo}" class="exchange-btn">주문상세정보</a>
+		               <a href="<%=application.getContextPath()%>/user/purchaselistdetail?orderNo=${order.orderNo}" class="exchange-btn">주문상세정보</a>
 		           </div>
            		 <div class="col">
            			 <button class="exchange-btn" type="submit">교환/환불/구매취소</button>		               	

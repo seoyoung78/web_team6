@@ -33,7 +33,6 @@ public class ReviewsService {
 		reviewsDao.deleteReview(reviewNo, userId);
 	}
 
-	
 	/*public int getTotalRows(String userID) {
 		int rows = reviewsDao.count(userID);
 		return rows;

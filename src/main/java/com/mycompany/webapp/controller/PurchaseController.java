@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mycompany.webapp.dto.OrderProducts;
 import com.mycompany.webapp.dto.Orders;
@@ -59,7 +60,7 @@ public class PurchaseController {
 	}	
 	
 	/*주문디테일*/
-	@GetMapping("/purchaseListDetail")
+	@GetMapping("/purchaselistdetail")
 	public String openPurchaseListDetail(Model model, int orderNo, Authentication auth) {
 		String userId = auth.getName();
 		
@@ -113,20 +114,24 @@ public class PurchaseController {
 	}
 	
 	@PostMapping("/createreview")
-	public String updateReview(Authentication auth, int orderNo, int productNo, String reviewContent) {
+	public String updateReview(Authentication auth, int orderNo, int productNo, String reviewContent, RedirectAttributes redirect) {
 		String userId = auth.getName();
 		logger.info(String.valueOf(orderNo));
 		logger.info(String.valueOf(productNo));
 		logger.info(reviewContent);
 		reviewsService.saveReview(userId, orderNo, productNo, reviewContent);
-		orderProductsService.updateReview(orderNo, productNo, userId);
-		return "redirect:/user/purchaseListDetail";
+		orderProductsService.updateReview(userId, orderNo, productNo);
+		redirect.addAttribute("orderNo", orderNo);
+		return "redirect:/user/purchaselistdetail";
 	}
 	
 	@GetMapping("/delreview")
-	public String delReview(Authentication auth, int reviewNo) {
+	public String delReview(Authentication auth, int reviewNo, int productNo, RedirectAttributes redirect) {
 		String userId = auth.getName();
-		reviewsService.deleteReview(reviewNo, userId);		
+		logger.info(String.valueOf(reviewNo));
+		logger.info(String.valueOf(productNo));
+		reviewsService.deleteReview(reviewNo, userId);
+		redirect.addAttribute("productNo", productNo);
 		return "redirect:/product";
 	}
 

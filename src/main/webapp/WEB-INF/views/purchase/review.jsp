@@ -35,10 +35,12 @@
        		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
        		<div class="card-body">
               <div class="input-group form-group">
-                  <input type="text" class="form-control" name="orderNo" value="${orderNo}" readonly>
+              		<a>주문 번호 : ${orderNo}</a>
+                  <input type="hidden" name="orderNo" value="${orderNo}" readonly>
               </div>
               <div class="input-group form-group">
-                  <input type="text" class="form-control" name="productNo" value="${productNo}" readonly>
+                  <a>상품 번호 : ${productNo}</a>
+                  <input type="hidden" name="productNo" value="${productNo}" readonly>
               </div>
 
               <!-- 한 줄 평 작성-->
@@ -49,7 +51,7 @@
 
           <div class="card-footer-review">
               <div class="card-review-footer">
-              	<button class="btn">게시</button>              	                        
+              	<button id="review-submit-btn">게시</button>              	                        
               </div>
           </div>
        </form>
