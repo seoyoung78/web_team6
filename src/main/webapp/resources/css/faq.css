@@ -1,0 +1,62 @@
+/*FAQ*/
+.accordion {
+	margin-top: 60px; /* Add space above accordion */
+}
+
+.accordion .card {
+	border-radius: 0;
+	border-width: 1px 0 1px 0;
+}
+
+.accordion .card:first-child {
+	border-top: none;
+}
+
+.accordion .card .card-header {
+	background: #39613a;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	border-radius: 0;
+	margin-bottom: -2px;
+	font-family: "Roboto", sans-serif;
+}
+
+.accordion .card-header:hover {
+	background: #f8f8f8;
+}
+
+.accordion .card-header h2 span {
+	float: left;
+	margin-top: 10px;
+}
+
+.accordion .card-header .btn {
+	font-size: 1.04rem;
+	font-weight: 500;
+	width: 100%;
+	text-align: left;
+	position: relative;
+	top: -2px;
+}
+
+.accordion .card-header i {
+	float: right;
+	font-size: 1.3rem;
+	font-weight: bold;
+	position: relative;
+	top: 5px;
+}
+
+.accordion .card-header button:hover {
+	color: #3e4e23;
+}
+
+.accordion .card-body {
+	background: #eaeaea;
+	color: #595959;
+}
+
+.accordion .highlight {
+	color: #fff;
+	background: #97a497 !important;
+}

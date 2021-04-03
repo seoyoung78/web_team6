@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="euc-kr" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+					 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+					 
+<mapper namespace="com.mycompany.webapp.dao.ProductsRefundDao">
+
+	<!-- 환불중 -->
+ <insert id="insert" parameterType="int">
+		insert into products_refund
+		(order_no, refund_state, refund_date)
+		values
+		(#{orderNo}, 0, sysdate)
+	</insert>
+	
+	<update id="update">
+		update products_refund set
+			refund_state = 1,
+			refund_reason = #{refundReason}
+		where order_no = #{orderNo}			
+	</update>
+	
+</mapper>

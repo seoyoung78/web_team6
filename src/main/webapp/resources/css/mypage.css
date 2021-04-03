@@ -1,0 +1,30 @@
+#mypageTitle {
+    margin-top: 20px;
+    background-color: #f3f3f3;
+    color: #595959;
+    height: 50px;
+    padding: 10px;
+}
+
+#mypageList {
+    background-color: #d15851;
+    vertical-align: middle;
+    height: 40px;
+    padding: 10px;
+}
+
+#mypageList > a {
+    text-decoration-line: none;
+    color: white;
+    padding: 7px;
+}
+
+.mypage-tab-clicked{
+    background-color: #595959;
+}
+
+#mypageTitle-under{
+    margin: 20px; 
+	font-weight: bold; 
+	color:#d15851; 
+}

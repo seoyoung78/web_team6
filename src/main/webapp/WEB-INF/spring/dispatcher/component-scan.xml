@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+	
+	<!-- @Service와 @Repository를 제외 -->
+	<!-- @Controller @RestController @Compnents를 찾아서 설정 -->
+	<context:component-scan base-package="com.mycompany.webapp">
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Service"/>
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Repository"/>	
+		</context:component-scan>
+	
+	
+	
+</beans:beans>

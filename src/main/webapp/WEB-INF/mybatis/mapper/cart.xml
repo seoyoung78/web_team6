@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="euc-kr" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+					 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+					 
+<mapper namespace="com.mycompany.webapp.dao.CartDao">
+	<select id="selectAll" resultType="cart">
+		select c.product_no as productNo, 
+					 c.user_id as userId, 
+					 c.amount, 
+					 c.allprice as allPrice, 
+					 c.regdate,
+					 p.product_name as productName, 
+					 p.product_price as price,
+					 i.img_oname as imgOname, 
+					 i.img_sname as imgSname, 
+					 i.img_type as imgType
+		from cart c, users u, products p, products_img i
+		where c.product_no = p.product_no
+			and p.product_no = i.product_no
+               and c.user_id = u.user_id
+               and i.img_state = 1
+		order by c.regdate desc
+	</select>
+	
+	<select id="selectByPage" resultType="cart">
+		select rnum, productNo, userId, amount, allPrice, regdate, productName, price, imgOname, imgSname, imgType
+		from (
+		      select rownum as rnum, 
+		      		 productNo, userId, amount, allPrice, regdate, productName, price, imgOname, imgSname, imgType
+		    from (
+		        select c.product_no as productNo, 
+									 c.user_id as userId, 
+									 c.amount, 
+									 c.allprice as allPrice, 
+									 c.regdate,
+									 p.product_name as productName, 
+									 p.product_price as price,
+									 i.img_oname as imgOname, 
+									 i.img_sname as imgSname, 
+									 i.img_type as imgType
+						from cart c, users u, products p, products_img i
+						where c.product_no = p.product_no
+							and p.product_no = i.product_no
+              and c.user_id = u.user_id
+              and i.img_state = 1
+              and c.user_id = #{userId}
+						order by c.regdate desc
+		           )
+		    where rownum &lt;= #{pager.endRowNo}
+	    )
+	    where rnum &gt;= #{pager.startRowNo}		
+	</select>
+	
+	<insert id="insert" parameterType="cart">
+		insert into cart
+		(product_no, user_id, amount, regdate, allprice)
+		values
+		(#{productNo}, #{userId}, #{amount}, sysdate, #{allPrice})
+	</insert>
+	
+	<delete id="deleteCart">
+		delete from cart
+		where product_no = #{productNo} and user_id = #{userId}
+	</delete> 
+	
+	<update id="updateCart" parameterType="cart">
+		update cart set
+			amount = #{amount},
+			allprice = #{allPrice}
+		where product_no = #{productNo}
+		  and user_id = #{userId} 
+	</update> 
+	
+	<select id="count" resultType="int">
+		select count(*)
+		from cart c, users u, products p, products_img i
+		where c.product_no = p.product_no
+		  and p.product_no = i.product_no
+	      and c.user_id = u.user_id
+	      and i.img_state = 1
+	      and c.user_id = #{userId}
+	</select>
+	
+</mapper>

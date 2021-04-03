@@ -1,0 +1,67 @@
+
+.container-order{
+    position: relative;
+    left: auto;
+    right: auto;
+
+}
+
+
+
+
+.card-header{
+    height: 40px;
+}
+
+.card-header h6{
+    color: #595959;
+    align-self: center;
+}
+
+
+/* 결제 카드 전체 */
+.card-order{    
+    height: 380px;
+    margin: 10px;
+    align-self:center;
+    width: 400px;
+    background-color: #d9d9d9;
+}
+
+/* 산타캔디 계좌 고정값 관련 라벨 */
+#accountlabel{
+    margin:10px;
+}
+
+
+/* 결제 버튼이 들어갈 공간 */
+.pay_btn_div{
+    justify-content: center;
+    width: 100%;
+    padding-top: 5%;
+    padding-bottom:5%;
+}
+
+/* 결제 버튼 */
+#pay-btn{
+    color: white;
+    background-color: #d15851;
+    width:100%;
+}
+
+#pay-btn:hover{
+    color: black;
+    background-color: #d15851;
+}
+
+/* 카테고리 경로 노출*/
+.login-path{
+    width: 100%;
+    height: 25px;
+    margin-top: 30px;
+    font-weight: bold;
+    color:#d15851;
+    border-bottom: 1px solid #d15851;
+    padding-bottom: 30px;
+    margin-bottom:50px;
+}

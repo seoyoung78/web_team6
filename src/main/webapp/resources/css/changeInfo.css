@@ -1,0 +1,17 @@
+/* 개인정보수정 */
+#changeTable {
+    width: 800px;
+    margin: 3% 25%;
+}
+#changeTable > th,
+td {
+    text-align: left;
+    padding-bottom: 1%;
+}
+
+.changebtn {
+    position: relative;
+    left: 40%;
+    margin-right: 0;
+}
+

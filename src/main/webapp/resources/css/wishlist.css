@@ -1,0 +1,91 @@
+
+/* 카테고리 경로 노출*/
+.wishlist-path{
+    width: 15%;
+    height: 25px;
+    margin-top: 50px;
+    margin-left: 10%;
+    font-weight: bold;
+    color:#d15851;
+}
+
+/* 최신순, 인기순 버튼 */
+.wishlist-popular{
+    width: 15%;
+    height: 25px;
+    margin-left: 75%;
+}
+
+.wishlist-popular .text{
+    font-size: 1em;
+    color:black;
+    padding-left: 5px;
+}
+
+
+.wishlist-wrapper{
+    border-top: 3px solid #d15851;
+    width:80%;
+    margin-left: 10%;
+    height: 100%;
+    position: relative;
+    background-image: url(../images/배경.png);                                                              
+    background-size: cover;
+}
+
+.wishlist-product{
+    background-image: url(../images/배경.png);                                                              
+    background-size: cover;
+    margin: 30px;
+    margin-top: 100px;
+    margin-left: 30px;
+    margin-bottom: 3px;
+    width: 80%;
+    height: 230px;
+}
+.wishlist-product img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.wishlist-title{
+    margin: 30px;
+    margin-top: 0;
+    width:80%;
+    height: 110px;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.wishlist-title p{
+    font-weight: 500;
+    text-align: center;
+    vertical-align:middle;
+}
+
+
+.pagination{
+    width: 20%;
+    margin-left: 32%;
+    padding-top: 20px;
+}
+
+#mypageTitle {
+    margin-top: 30px;
+    margin-bottom: 0;
+    background-color: #f3f3f3;
+    color: #595959;
+    height: 50px;
+    padding-left: 10px;
+    padding-top: 5px;
+
+}
+#mypageList {
+    background-color: #d15851;
+    height: 40px;
+}
+
+#mypageList > a {
+    text-decoration-line: none;
+    color: white;
+}

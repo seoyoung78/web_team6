@@ -1,0 +1,82 @@
+.container-signup{
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: 5%;
+}
+
+.card-header{
+    height: 40px;
+}
+
+.card-header h6{
+    color: #595959;
+    align-self: center;
+}
+
+/* 회원가입 카드 전체 */
+.card-signup{
+    width: fit-content;
+    height: fit-content;
+    background-color: #d9d9d9;
+}
+.error{
+	font-size: 0.8em;
+	color:red;
+	margin-left:0.5%;
+	margin-bottom:2%;
+}
+
+.success{
+	font-size: 0.8em;
+	color:blue;
+	margin-left:0.5%;
+	margin-bottom:2%;
+}
+
+/* 이메일 입력칸 */
+#email{
+    width: 150px
+}
+
+/* 패스워드 입력칸 */
+input[type=password] { 
+    width: 300px;
+}
+
+/* 회원가입 창에서 주로 쓰는 버튼 */
+.signup-btn{
+    color: white;
+    background-color: #d15851;
+    width: 200px;
+}
+
+.signup-btn-complete{
+    color: white;
+    background-color: #d15851;
+    width: 200px;
+    margin-bottom:20px;
+}
+
+/* 버튼 그림자 */
+.signup-btn:hover{
+    color: black;
+    background-color: white;
+}
+
+.login-path{
+    width: 100%;
+    height: 25px;
+    margin-top: 30px;
+    font-weight: bold;
+    color:#d15851;
+    border-bottom: 1px solid #d15851;
+    padding-bottom: 30px;
+    margin-bottom:50px;
+}
+
+.signup-content .container-fluid{
+    padding: 40px;
+    height: fit-content;                                                     
+}
+

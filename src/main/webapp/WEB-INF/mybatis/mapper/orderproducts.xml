@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+					 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+					 
+<mapper namespace="com.mycompany.webapp.dao.OrderProductsDao">
+
+	<insert id="insert">
+		insert into order_products
+		(order_no, product_no, user_id, amount, price, review_state)
+		values
+		(seq_orders_order_no.currval, #{productNo}, #{userId}, #{amount}, #{price}, 0)
+	</insert>
+	
+	<select id="selectDetail" resultType="orderProduct">
+		select op.order_no as orderNo,
+					 op.product_no as productNo, 
+					 op.amount as amount, 
+					 op.price as price, 
+					 op.review_state as reviewState,
+	         p.product_name as productName,
+	         i.img_sname as imgSname,
+	         i.img_type as imgType
+			from orders o, order_products op, products p, products_img i
+			where op.order_no = o.order_no
+	      and op.product_no = p.product_no
+	      and p.product_no = i.product_no
+	      and i.img_state = 1
+			  and o.order_no = #{orderNo}
+			  and o.user_id = #{userId}
+	</select>
+
+	<update id="update">
+		update order_products
+		set review_state = 1
+		where order_no = #{orderNo}
+			and	product_no = #{productNo}
+			and	user_id = #{userId}
+	</update>
+	
+</mapper>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="euc-kr" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- <mapper namespace="boards"> -->
+<mapper namespace="com.mycompany.webapp.dao.QnaDao">
+
+
+ 	<insert id="insert" parameterType="qna">
+    
+           insert into qna
+         (qna_no, user_id, email, qna_title, qna_content, qna_regdate, answer_state, answer_date, answer_content)
+       values
+         (seq_qna_qnaNo.nextval, #{userId}, #{email}, #{qnaTitle}, #{qnaContent}, sysdate, default, null, null)
+        
+   </insert>
+
+</mapper>

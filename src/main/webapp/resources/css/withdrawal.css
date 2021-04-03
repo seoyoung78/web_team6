@@ -1,0 +1,36 @@
+#withdraw-reason{
+    display: table; 
+    margin-left: auto; 
+    margin-right: auto; 
+    padding: 20px;
+}
+
+#select-withdraw-reason-title{
+    margin: 20px; 
+    font-weight: bold;
+    color: #595959;
+    
+}
+
+#withdraw-notice{
+    color: #d15851; 
+    font-size: smaller; 
+    margin: 30px;
+    text-align: center;
+}
+
+#withdraw-btn-div{
+    padding: 5px;
+    font-size: smaller;
+    display: table; 
+    margin-left: auto; 
+    margin-right: auto; 
+}
+
+#withdraw-btn{
+    margin: 10px;
+    color: #f3f3f3; 
+    padding: 10px;
+    border: 2px solid white;
+    background-color: #595959; 
+}

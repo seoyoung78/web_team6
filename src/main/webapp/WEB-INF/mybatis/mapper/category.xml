@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="euc-kr" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.mycompany.webapp.dao.CategoryDao">
+
+     
+     <select id="selectByCno" parameterType="int" resultType="category">
+		SELECT 
+			 category_no, 
+			 category_name 
+		FROM
+			 product_categories
+		WHERE
+			#{categoryNo} = category_no
+	 </select>
+     
+
+	<insert id="insert" parameterType="category">
+		INSERT INTO product_categories
+			(category_no, 
+			 category_name)
+		VALUES(
+			#{categoryNo},
+			#{categoryName}
+		)
+	</insert>
+	
+	<update id="update" parameterType="category">
+		UPDATE 
+			product_categories
+		SET
+			category_name = #{categoryName},
+		WHERE
+			#{categoryNo} = category_no
+	</update>
+	
+	<delete id="deleteByCno" parameterType="int">
+		DELETE
+		FROM
+			product_categories
+		WHERE
+			#{categoryNo} = category_no
+	</delete>
+	
+</mapper>

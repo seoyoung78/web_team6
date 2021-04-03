@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="euc-kr" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+					 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+					 
+<mapper namespace="com.mycompany.webapp.dao.OrdersDao">
+	
+	<insert id="insert" parameterType="order">
+		insert into orders
+		(order_no, user_id, order_date, all_price, order_state, zip_code, road_address, detail_address)
+		values
+		(seq_orders_order_no.nextval, #{userId}, sysdate, #{allPrice}, 0, #{zipCode}, #{roadAddress}, #{detailAddress})
+	</insert>
+	
+	<select id="selectAll" resultType="order">
+		select 	
+        order_no as orderNo,
+        all_price as allPrice, 
+				order_date as orderDate, 
+        order_state as orderState
+		from orders
+		where user_id = #{userId}
+	</select>
+
+</mapper>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+                        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+   <typeAliases>
+   	  <typeAlias type="com.mycompany.webapp.dto.Pager" alias="pager"/>
+      <typeAlias type="com.mycompany.webapp.dto.Products" alias="product"/>
+      <typeAlias type="com.mycompany.webapp.dto.ProductsImg" alias="productImg"/>
+      <typeAlias type="com.mycompany.webapp.dto.ProductsCategories" alias="category"/>
+      <typeAlias type="com.mycompany.webapp.dto.Cart" alias="cart"/>
+      <typeAlias type="com.mycompany.webapp.dto.Wishlist" alias="wishlist"/>
+      <typeAlias type="com.mycompany.webapp.dto.Users" alias="user"/>
+      <typeAlias type="com.mycompany.webapp.dto.OrderProducts" alias="orderProduct"/>
+      <typeAlias type="com.mycompany.webapp.dto.Orders" alias="order"/>
+      <typeAlias type="com.mycompany.webapp.dto.ProductsRefund" alias="productsRefund"/>
+      <typeAlias type="com.mycompany.webapp.dto.Qna" alias="qna"/>
+      <typeAlias type="com.mycompany.webapp.dto.Reviews" alias="review"/>    
+   </typeAliases>
+</configuration>

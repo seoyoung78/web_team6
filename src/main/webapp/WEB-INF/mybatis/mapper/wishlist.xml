@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="euc-kr" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mycompany.webapp.dao.WishlistDao">
+
+
+	  <select id = "selectAllWishlist" resultType="wishlist">
+	  	select product_no as productNo, user_id as userId, regdate 
+	  	from wishlist
+	  </select> 
+
+
+	  <select id = "selectAll" parameterType="String" resultType="wishlist">
+	  	select p.product_name as productName, i.img_sname as imgSname, w.product_no as productNo, i.img_type as imgType 
+	  	from wishlist w
+	  	join products p
+	  	on w.product_no = p.product_no
+	  	join products_img i
+	  	on p.product_no = i.product_no
+	  	where w.user_id=#{userId} and i.img_state = 1
+	  	order by w.regdate desc
+	  </select>
+	  
+	
+ 
+  	
+  	<select id="selectByPage" resultType="wishlist">
+	  	select rnum,userId,productName,regdate,productNo,imgSname
+	      from (
+	          select rownum as rnum,userId,productName,regdate,productNo,imgSname
+	          from (
+	              select w.user_id as userId, p.product_name as productName,w.regdate as regdate,w.product_no as productNo,i.img_sname as imgSname
+	              from wishlist w
+				  join products p
+				  on w.product_no = p.product_no
+				  join products_img i
+				  on p.product_no = i.product_no
+				  where i.img_state=1
+				  and w.user_id = #{userId}
+				  order by regdate desc
+	          )
+	          where rownum &lt;= #{pager.endRowNo}
+	      )
+	      where rnum &gt;= #{pager.startRowNo}
+  	
+  	</select>
+  	
+  
+     <insert id="insert" parameterType="wishlist">
+     
+          insert into wishlist
+         (product_no, user_id, regdate)
+       values
+         (#{productNo}, #{userId}, sysdate)
+   </insert>
+   
+ 
+     <delete id="deleteByWishlistNo" >
+		delete from wishlist 
+		where product_no=#{productNo}
+		and user_id = #{userId}
+		   
+   </delete>
+   
+ 
+  
+  <select id = "count" resultType="int">
+  	select count(*) 
+  	 from wishlist w
+				  join products p
+				  on w.product_no = p.product_no
+				 
+  </select>
+  
+  
+  
+</mapper>

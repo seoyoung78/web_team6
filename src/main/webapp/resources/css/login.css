@@ -1,0 +1,92 @@
+.container-login{
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: 5%;
+}
+
+
+.card-header{
+    height: 40px;
+}
+
+.card-header h6{
+    color: #595959;
+    align-self: center;
+}
+
+
+/*회원가입, 아이디비번찾기로 넘어가는 링크*/
+.links{
+    color: white;
+}
+
+.links a{
+    margin-left: 4px;
+}
+
+.error{
+	font-size: 0.8em;
+	color:red;
+	margin-left:0.5%;
+	margin-bottom:2%;
+}
+
+.success{
+	font-size: 0.8em;
+	color:blue;
+	margin-left:0.5%;
+	margin-bottom:2%;
+}
+
+.card-login{
+    height: 350px;
+    width: 500px;
+    margin:10px;
+    background-color: #d9d9d9;
+}
+
+
+.login-btn{
+    color: white;
+    background-color: #d15851;
+    width: 100px;
+    float: right; 
+    display: table-cell;
+    align-items: center;
+}
+    
+.login-btn:hover{
+    color: black;
+    background-color: white;
+}
+
+
+/*계정 기억 체크박스*/
+#remember{
+    color: #595959;
+    margin: 10px;
+}
+
+#remember input
+{
+    width: 20px;
+    height: 20px;
+    margin-left: 15px;
+    margin-right: 5px;
+}
+
+
+/* 카테고리 경로 노출*/
+.login-path{
+    width: 100%;
+    height: 25px;
+    margin-top: 30px;
+    font-weight: bold;
+    color:#d15851;
+    border-bottom: 1px solid #d15851;
+    padding-bottom: 30px;
+    margin-bottom:50px;
+}
+
+

@@ -1,0 +1,52 @@
+/* 구매내역 */
+.purchaseContent {
+	background-color: #f3f3f3;
+	margin-bottom: 1%;
+	position: relative;
+}
+
+.purchaseImg {
+	position: absolute;
+	width: 230px;
+	height: 180px;
+	left: 25%;
+	top: 15%;
+}
+
+.purchase-details{
+	padding-top: 20px;
+}
+
+
+
+
+.exchange-btn {
+	position: absolute;
+	top: 80%;
+	background-color: #595959;
+	color:white;
+	padding:10px;
+	border: 1px solid #ccc;
+	margin: 5px;
+}
+
+.review-btn {
+	position: absolute;
+	top: 60%;
+	background-color: #595959; 
+	color:#f3f3f3; 
+	margin: 5px;
+	border: 1px solid #ccc;
+	padding: 10px;
+}
+
+/* button a{
+	color: white;
+} */
+
+.pagination-purchase{
+    width: 20%;
+    margin-left:40%;
+    padding-top: 10px;
+}
+

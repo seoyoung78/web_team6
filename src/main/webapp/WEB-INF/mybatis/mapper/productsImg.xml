@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="euc-kr" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.mycompany.webapp.dao.ProductsImgDao">
+
+	<select id="selectAll" resultType="productImg">
+		SELECT 
+			img_no,
+			product_no,
+			img_oname,
+			img_sname,
+			img_type
+		FROM
+			 products_img
+		ORDER BY 
+			 img_no DESC
+	</select>
+	
+	 <select id="selectByImgno" parameterType="int" resultType="productImg">
+		SELECT 
+			img_no,
+			product_no,
+			img_oname,
+			img_sname,
+			img_type
+		FROM
+			 products_img
+		WHERE
+			#{imgNo} = img_no
+	</select>
+	
+
+	<insert id="insert" parameterType="productImg">
+		<!-- 시퀀스 넘버를 전달하여 사용하기 위해 -->
+		<selectKey keyProperty="imgNo" resultType="int" order="BEFORE">
+			select seq_products_img_img_no.nextval from dual
+		</selectKey>
+
+		INSERT INTO products_img
+			(img_no,
+			product_no,
+            img_state,
+			img_oname,
+			img_sname,
+			img_type)
+		VALUES(
+            #{imgNo},
+			10,
+            0,
+			#{imgOname},
+			#{imgSname},
+			#{imgType}
+		)
+		
+	</insert>
+	
+	<update id="update" parameterType="productImg">
+		UPDATE 
+			products_img
+		SET
+			img_oname = #{imgOname},
+			img_sname = #{imgSname},
+			img_type = #{imgType},
+		WHERE
+			img_no = #{imgNo}
+	</update>
+	
+	<delete id="deleteByImgno" parameterType="int">
+		DELETE
+		FROM
+			products_img
+		WHERE
+			img_no = #{imgNo}
+	</delete>
+	
+	<select id="count" resultType="int">
+		SELECT count(*)
+		FROM products_img
+	</select>	
+</mapper>

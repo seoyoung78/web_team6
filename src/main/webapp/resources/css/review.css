@@ -1,0 +1,54 @@
+body{
+    /* header_footer.css 의 body 부분 덮어쓰기 */
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* 한 줄 평 */
+
+.container-review{
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    display: table-cell;
+    align-content: center;
+    vertical-align: middle;
+}
+
+
+.card-header{
+    height: 40px;
+    align-self: center;
+    color: #595959;
+}
+
+
+.card-review{
+    height: 300px;
+    width: 500px;
+    background-color: #d9d9d9;
+}
+
+.card-footer-review{
+	height: 65px;
+}
+
+#review-write { 
+    width: 300px;
+	height: 100px;
+}
+
+#review-submit-btn{
+	float: right;
+    color: white;
+    background-color: #d15851;
+    width: 100px;
+}
+
+#review-submit-btn:hover{
+    color: black;
+    background-color: white;
+}
+

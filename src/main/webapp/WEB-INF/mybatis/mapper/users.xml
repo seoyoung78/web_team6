@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+					 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="com.mycompany.webapp.dao.UsersDao">
+	
+
+	<insert id="insert" parameterType="user">
+		INSERT INTO users(
+			user_id, 
+			user_name, 
+			user_password,
+			user_phone, 
+			zip_code,
+			road_address,
+			detail_address,
+			user_ssn1, 
+			user_ssn2,
+			user_regdate,
+			user_account,
+			user_bank,
+			account_name,
+			user_authority, 
+			user_enable,
+			delete_state, 
+			delete_date,
+			delete_reason)
+		VALUES(
+			#{userId}, 
+			#{userName}, 
+			#{userPassword},
+			#{userPhone}, 
+			#{zipCode},
+			#{roadAddress},
+			#{detailAddress},
+			#{userSsn1}, 
+			#{userSsn2},
+			sysdate,
+			#{userAccount},
+			#{userBank},
+			#{accountName},
+			'ROLE_USER', 
+			1,
+			0, 
+			NULL,
+			NULL
+			)
+	</insert>
+
+	<!-- <select id="selectAll" resultType="user">
+		select
+		user_id,
+		user_name, user_password,
+		user_phone,
+		user_ssn1, user_ssn2,
+		user_account,user_bank,account_name
+		from Users
+		order by desc
+	</select> -->
+
+	<select id="selectByUserid" parameterType="string" resultType="user">
+		SELECT
+			user_id as userId,
+			user_name as userName
+		FROM 
+			users
+		WHERE 
+			user_id = #{userId}
+	</select>
+	
+	
+	<update id="update" parameterType="user">
+		UPDATE 
+			users
+		SET
+			user_name = #{userName},
+			user_password = #{userPassword},
+			user_phone = #{userPhone},
+			zip_code = #{zipCode},
+			road_address = #{roadAddress},
+			detail_address = #{detailAddress}
+		WHERE
+			user_id = #{userId}
+	</update>
+	
+	<select id="findById" resultType="string">
+		SELECT
+			user_id as userId
+		FROM 
+			users
+		WHERE 
+			user_name = #{userName}
+		AND
+			user_phone = #{userPhone}
+	</select>
+
+	<update id="updateWithdrawal">
+		update users set
+			user_enable = 0,
+			delete_state = 1,
+			delete_date = sysdate,
+			delete_reason = #{deleteReason}
+		where
+			user_id = #{userId}
+	</update>
+
+</mapper>

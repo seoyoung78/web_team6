@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="euc-kr" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.mycompany.webapp.dao.ProductsDao">
+
+	<select id="selectAll" resultType="product">
+		SELECT 
+			 product_no, 
+			 product_category_no, 
+			 product_name, 
+			 product_price, 
+			 product_content, 
+			 product_state, 
+			 product_regdate, 
+			 product_hitcount, 
+			 product_sellcount, 
+			 reviewcount
+		FROM
+			 products
+		ORDER BY 
+			 product_no DESC
+	</select>
+	
+	<select id="selectBestProduct" resultType="product">
+		SELECT
+            p.product_no as productNo,
+			p.product_name as productName, 
+			p.product_price as productPrice, 
+			i.img_oname as imgOname, 
+			i.img_sname as imgSname, 
+			i.img_type as imgType
+        FROM(
+            SELECT 
+                product_no,
+                product_name, 
+                product_price
+            FROM(
+                SELECT 
+                    product_no,
+                    product_name, 
+                    product_price
+                FROM
+                    products
+                ORDER BY 
+                    product_sellcount DESC
+            )
+            WHERE 
+                rownum &lt;= 4
+        ) p
+        JOIN 	
+	  		products_img i
+	  	ON	
+	  		p.product_no = i.product_no AND i.img_state = 1
+	  		
+	</select>
+	
+	<select id="selectNewProduct" resultType="product">
+		SELECT
+            p.product_no as productNo,
+			p.product_name as productName, 
+			p.product_price as productPrice, 
+			i.img_oname as imgOname, 
+			i.img_sname as imgSname, 
+			i.img_type as imgType
+        FROM(
+            SELECT 
+                product_no,
+                product_name, 
+                product_price
+            FROM(
+                SELECT 
+                    product_no,
+                    product_name, 
+                    product_price
+                FROM
+                    products
+                ORDER BY 
+                    product_regdate DESC
+            )
+            WHERE 
+                rownum &lt;= 12
+        ) p
+        JOIN 	
+	  		products_img i
+	  	ON	
+	  		p.product_no = i.product_no AND i.img_state = 1
+	</select>
+
+
+	<!-- 페이징 -->
+  	<select id="selectByPage"  resultType="product">
+        SELECT  rnum, 
+        	 	product_no as productNo,
+				product_name as productName, 
+				product_price as productPrice, 
+				img_oname as imgOname, 
+			    img_sname as imgSname, 
+			   	img_type as imgType, 
+			   	category_no as productCategoryNo,
+			    category_name as categoryName
+         FROM (
+             SELECT rownum as rnum,  
+        	 	  	product_no,
+					product_name, 
+					product_price, 
+					img_oname, 
+			    	img_sname, 
+			   		img_type,
+			   		category_no,
+			   		category_name
+             FROM (
+                SELECT 
+                 		p.product_no,
+						p.product_name, 
+						p.product_price, 
+						i.img_oname, 
+			    		i.img_sname, 
+			   			i.img_type,
+			   			c.category_no,
+			   			c.category_name
+			   			
+                FROM	products p
+	  			JOIN 	products_img i
+	  			ON		p.product_no = i.product_no AND i.img_state = 1
+	  			JOIN	product_categories c   
+	    		ON		p.product_category_no = c.category_no
+	 			WHERE 
+	 					p.product_category_no = #{cno}
+        		ORDER BY 
+		           		p.product_no desc
+             )
+             WHERE rownum &lt;= #{pager.endRowNo}
+         )
+         WHERE rnum &gt;= #{pager.startRowNo}
+     </select>  
+     
+     <select id="selectByBestPage"  resultType="product">
+        SELECT  rnum, 
+        	 	product_no as productNo,
+				product_name as productName, 
+				product_price as productPrice, 
+				img_oname as imgOname, 
+			    img_sname as imgSname, 
+			   	img_type as imgType, 
+			   	category_no as productCategoryNo,
+			    category_name as categoryName
+         FROM (
+             SELECT rownum as rnum,  
+        	 	  	product_no,
+					product_name, 
+					product_price, 
+					img_oname, 
+			    	img_sname, 
+			   		img_type,
+			   		category_no,
+			   		category_name
+             FROM (
+                SELECT 
+                 		p.product_no,
+						p.product_name, 
+						p.product_price, 
+						i.img_oname, 
+			    		i.img_sname, 
+			   			i.img_type,
+			   			c.category_no,
+			   			c.category_name
+			   			
+                FROM	products p
+	  			JOIN 	products_img i
+	  			ON		p.product_no = i.product_no AND i.img_state = 1
+	  			JOIN	product_categories c   
+	    		ON		p.product_category_no = c.category_no
+	 			WHERE 
+	 					p.product_category_no = #{cno}
+        		ORDER BY 
+		           		p.product_hitcount desc
+             )
+             WHERE rownum &lt;= #{pager.endRowNo}
+         )
+         WHERE rnum &gt;= #{pager.startRowNo}
+     </select>  
+     
+     <select id="selectByNewPage"  resultType="product">
+        SELECT  rnum, 
+        	 	product_no as productNo,
+				product_name as productName, 
+				product_price as productPrice, 
+				img_oname as imgOname, 
+			    img_sname as imgSname, 
+			   	img_type as imgType, 
+			   	category_no as productCategoryNo,
+			    category_name as categoryName
+         FROM (
+             SELECT rownum as rnum,  
+        	 	  	product_no,
+					product_name, 
+					product_price, 
+					img_oname, 
+			    	img_sname, 
+			   		img_type,
+			   		category_no,
+			   		category_name
+             FROM (
+                SELECT 
+                 		p.product_no,
+						p.product_name, 
+						p.product_price, 
+						i.img_oname, 
+			    		i.img_sname, 
+			   			i.img_type,
+			   			c.category_no,
+			   			c.category_name
+			   			
+                FROM	products p
+	  			JOIN 	products_img i
+	  			ON		p.product_no = i.product_no AND i.img_state = 1
+	  			JOIN	product_categories c   
+	    		ON		p.product_category_no = c.category_no
+	 			WHERE 
+	 					p.product_category_no = #{cno}
+        		ORDER BY 
+		           		p.product_regdate desc
+             )
+             WHERE rownum &lt;= #{pager.endRowNo}
+         )
+         WHERE rnum &gt;= #{pager.startRowNo}
+     </select>  
+  
+     <select id="selectByPno" parameterType="int" resultType="product">
+		SELECT 
+			 p.product_no as productNo, 
+			 p.product_name as productName, 
+			 p.product_price as productPrice, 
+			 p.product_content as productContent, 
+			 p.product_hitcount as productHitcount, 
+			 p.product_sellcount as productSellcount, 
+			 p.reviewcount as reviewcount,
+			 c.category_no as productCategoryNo, 
+			 c.category_name as productCategoryName,
+			 i.img_oname as imgOname,
+			 i.img_sname as imgSname,
+			 i.img_type as imgType
+		FROM 
+      	  	 products p
+	  	JOIN 
+	  		 products_img i	
+	  	ON 
+	  		 p.product_no = i.product_no
+	    JOIN
+	      	 product_categories c  
+	    ON	
+	    	 p.product_category_no = c.category_no
+	 	WHERE 
+	 	  	 p.product_no = #{productNo}
+	</select>
+     
+
+	<insert id="insert" parameterType="product">
+		<!-- 시퀀스 넘버를 전달하여 사용하기 위해 -->
+		<selectKey keyProperty="product_no" resultType="int" order="BEFORE">
+			select seq_products_product_no.nextval from dual
+		</selectKey>
+
+		INSERT INTO products
+			(product_no, 
+			 product_category_no, 
+			 product_name, 
+			 product_price, 
+			 product_content, 
+			 product_state, 
+			 product_regdate, 
+			 product_hitcount, 
+			 product_sellcount, 
+			 reviewcount)
+		VALUES(
+			product_no,
+			#{categoryDto.getCategoryNo()},
+			#{productName},
+			#{productPrice},
+			#{productContent},
+			0,
+			sysdate,
+			0,
+			0,
+			0
+		)
+		
+	</insert>
+	
+	<update id="update" parameterType="product">
+		UPDATE 
+			products
+		SET
+			product_name = #{productName},
+			product_price = #{productPrice},
+			product_content = #{productContent},
+		WHERE
+			product_no = #{productNo}
+	</update>
+	
+	<update id="updatePhitcount" parameterType="int">
+		UPDATE
+			products
+		SET
+			product_hitcount = product_hitcount+1
+		WHERE
+			product_no = #{productNo}
+	</update>
+	
+	<update id="updatePsellcount" parameterType="int">
+		UPDATE
+			products
+		SET
+			product_sellcount = product_sellcount+1
+		WHERE
+			product_no = #{productNo}
+	</update>
+	
+	<update id="updateState" parameterType="int">
+		UPDATE
+			products
+		SET
+			productState = #{product_state}
+		WHERE
+			product_no = #{productNo}
+	</update>
+	
+	<delete id="deleteByPno" parameterType="int">
+		DELETE
+		FROM
+			products
+		WHERE
+			product_no = #{productNo}
+	</delete>
+	
+	<select id="count" parameterType="int" resultType="int">
+		SELECT count(*)
+		FROM products
+		WHERE product_category_no = #{cno}
+	</select>
+	
+	<select id="countKeyword" parameterType="String" resultType="int">
+		SELECT count(*)
+		FROM products
+		WHERE product_name LIKE '%'||#{keyword}||'%'
+	</select>
+	
+	
+	<select id="selectBySearchPage"  resultType="product">
+		select rnum,productNo,productName,productPrice,imgSname
+	      from (
+	          select rownum as rnum,productNo,productName,productPrice,imgSname
+	          from (
+				        SELECT 
+						 p.product_no as productNo, 
+						 p.product_name as productName, 
+						 p.product_price as productPrice, 
+						 i.img_sname as imgSname
+					FROM 
+			      	  	 products p
+				  	JOIN 
+				  		 products_img i	
+				  	ON 
+				  		 p.product_no = i.product_no
+				    JOIN
+				      	 product_categories c  
+				    ON	
+				    	 p.product_category_no = c.category_no
+				 	WHERE 
+				 	  	 p.product_name LIKE '%'||#{keyword}||'%' and i.img_state=1
+	          )
+	          where rownum &lt;= #{pager.endRowNo}
+	      )
+	      where rnum &gt;= #{pager.startRowNo}
+
+	</select>
+	
+	
+	</mapper>
