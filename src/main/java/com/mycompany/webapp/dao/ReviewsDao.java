@@ -12,8 +12,7 @@ import com.mycompany.webapp.dto.Reviews;
 public interface ReviewsDao {
 	public int insert(@Param("userId") String userId, @Param("orderNo") int orderNo, @Param("productNo") int productNo, @Param("reviewContent") String reviewContent);
 	public List<Reviews> selectByPno(int productNo);
-	public Reviews selectReview(int reviewNo);
 	public int deleteReview(@Param("reviewNo") int reviewNo, @Param("userId") String userID);
-	//public List<Reviews> selectByPage(Pager pager);
-	//public int count(String userID);	
+	public List<Reviews> selectByPage(@Param("productNo") int productNo, @Param("pager") Pager pager);
+	public int count(int productNo);	
 }

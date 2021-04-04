@@ -3,11 +3,7 @@
     position: relative;
     left: auto;
     right: auto;
-
 }
-
-
-
 
 .card-header{
     height: 40px;
@@ -24,8 +20,9 @@
     height: 380px;
     margin: 10px;
     align-self:center;
-    width: 400px;
+    width: 350px;
     background-color: #d9d9d9;
+    float: left;
 }
 
 /* 산타캔디 계좌 고정값 관련 라벨 */

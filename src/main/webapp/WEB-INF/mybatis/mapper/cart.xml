@@ -23,7 +23,7 @@
 		order by c.regdate desc
 	</select>
 	
-	<select id="selectByPage" resultType="cart">
+	<!-- <select id="selectByPage" resultType="cart">
 		select rnum, productNo, userId, amount, allPrice, regdate, productName, price, imgOname, imgSname, imgType
 		from (
 		      select rownum as rnum, 
@@ -50,7 +50,7 @@
 		    where rownum &lt;= #{pager.endRowNo}
 	    )
 	    where rnum &gt;= #{pager.startRowNo}		
-	</select>
+	</select> -->
 	
 	<insert id="insert" parameterType="cart">
 		insert into cart

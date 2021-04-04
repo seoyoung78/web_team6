@@ -67,140 +67,134 @@
 
 						<form method="post" action="<%=application.getContextPath()%>/user/ordercomplete">
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                        <!-- 수령인 관련 정보입력 카드
-                        ======================================================================== -->
-                        <div class="card-order d-inline-block">
-                            <div class="card-header">
-                                <h6>수령인</h6>
-                            </div>
-                            <div class="card-body">
-                            	
-                            		  <div class="input-group form-group">
-                                        <!-- 주소입력 -->
-                                        <div>
-                                            <input
-                                                type="text"
-                                                id="sample4_postcode"
-                                                name="zipCode"
-                                                class="form-control"
-                                                placeholder="우편번호"
-                                                readonly="readonly"
-                                                required="required">
-                                            <input
-                                                type="button"
-                                                onclick="excution_daum_address()"
-                                                class="form-control find_btn"
-                                                value="우편번호 찾기">
-                                            <br>
-                                        </div>
-                                        <div><input
-                                            type="text"
-                                            id="sample4_roadAddress"
-                                            name="roadAddress"
-                                            class="form-control"
-                                            placeholder="도로명주소"
-                                            readonly="readonly"
-                                            required="required"></div>
-                                        <div><input
-                                            type="text"
-                                            id="sample4_detailAddress"
-                                            name="detailAddress"
-                                            class="form-control"
-                                            placeholder="상세주소"
-                                            required="required"></div>
-                                    </div>
-                            	
-                                  
-                            </div>
+              <!-- 수령인 관련 정보입력 카드
+              ======================================================================== -->
+              <div class="card-order">
+                <div class="card-header">
+                    <h6>수령인</h6>
+                </div>
+                <div class="card-body">                	
+             		  <div class="input-group form-group">
+                     <!-- 주소입력 -->
+                     <div>
+                         <input
+                             type="text"
+                             id="sample4_postcode"
+                             name="zipCode"
+                             class="form-control"
+                             placeholder="우편번호"
+                             readonly="readonly"
+                             required="required">
+                         <input
+                             type="button"
+                             onclick="excution_daum_address()"
+                             class="form-control find_btn"
+                             value="우편번호 찾기">
+                         <br>
+                     </div>
+                     <div><input
+                         type="text"
+                         id="sample4_roadAddress"
+                         name="roadAddress"
+                         class="form-control"
+                         placeholder="도로명주소"
+                         readonly="readonly"
+                         required="required"></div>
+                     <div><input
+                         type="text"
+                         id="sample4_detailAddress"
+                         name="detailAddress"
+                         class="form-control"
+                         placeholder="상세주소"
+                         required="required"></div>
+                   </div>
+                </div>
+             	</div>
 
-                        </div>
+              <!-- 결제방법 카드
+              ======================================================================== -->
+              <div class="card-order">
+                  <div class="card-header">
+                      <h6>결제방법-무통장입금</h6>
+                  </div>
+                  <div class="card-body">
+                          <!-- 산타캔디의 입금전용 계좌 고정값-->
+                          <div class="input-group form-group">
+                              <label class="align-self-center" id="accountlabel">입금하실 계좌번호</label>
+                              <input
+                                  type="text"
+                                  class="form-control"
+                                  placeholder="202100-00-000000"
+                                  readonly="readonly">
+                          </div>
 
-                        <!-- 결제방법 카드
-                        ======================================================================== -->
-                        <div class="card-order  d-inline-block">
-                            <div class="card-header">
-                                <h6>결제방법-무통장입금</h6>
-                            </div>
-                            <div class="card-body">
-                                    <!-- 산타캔디의 입금전용 계좌 고정값-->
-                                    <div class="input-group form-group">
-                                        <label class="align-self-center" id="accountlabel">입금하실 계좌번호</label>
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            placeholder="202100-00-000000"
-                                            readonly="readonly">
-                                    </div>
+                          <div class="input-group form-group">
+                              <label class="align-self-center" id="accountlabel">예금주</label>
+                              <input type="text" class="form-control" placeholder="송파은행" readonly="readonly">
+                          </div>
+                          <div class="input-group form-group">
+                              <label class="align-self-center" id="accountlabel">은행명</label>
+                              <input type="text" class="form-control" placeholder="산타캔디" readonly="readonly">
+                          </div>
 
-                                    <div class="input-group form-group">
-                                        <label class="align-self-center" id="accountlabel">예금주</label>
-                                        <input type="text" class="form-control" placeholder="송파은행" readonly="readonly">
-                                    </div>
-                                    <div class="input-group form-group">
-                                        <label class="align-self-center" id="accountlabel">은행명</label>
-                                        <input type="text" class="form-control" placeholder="산타캔디" readonly="readonly">
-                                    </div>
+                          <div>
+                              <h6>※ 위 계좌로 결제 금액을 입금하시면, 확인 후 2~3일 내에 배송이 시작됩니다.</h6>
+                          </div>
+                  </div>
+              </div>
 
-                                    <div>
-                                        <h6>※ 위 계좌로 결제 금액을 입금하시면, 확인 후 2~3일 내에 배송이 시작됩니다.</h6>
-                                    </div>
-                            </div>
-                        </div>
+              <!-- 결제 금액 및 배송비 카드 -->
+              <div class="card-order">
+                  <div class="card-header">
+                      <h6>결제금액</h6>
+                  </div>
+                  <div class="row card-body">
+                      <table class="table">
+                          <thead>
+                              <tr>
+                                  <th>항목</th>
+                                  <th>금액</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <!-- 상품 금액 받아옴 -->
+                                  <td>상품 금액</td>
+                                  <td>
+                                      <p>${sum}원</p>
+                                  </td>
+                              </tr>
 
-                        <!-- 결제 금액 및 배송비 카드 -->
-                        <div class="card-order d-inline-block">
-                            <div class="card-header">
-                                <h6>결제금액</h6>
-                            </div>
-                            <div class="row card-body">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>항목</th>
-                                            <th>금액</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <!-- 상품 금액 받아옴 -->
-                                            <td>상품 금액</td>
-                                            <td>
-                                                <p>${sum}원</p>
-                                            </td>
-                                        </tr>
+                              <tr>
+                                  <td>배송비</td>
+                                  <td><c:set var="delivery" value="3000"/>${delivery}원</td>
+                              </tr>
 
-                                        <tr>
-                                            <td>배송비</td>
-                                            <td><c:set var="delivery" value="3000"/>${delivery}원</td>
-                                        </tr>
+                              <tr>
+                                  <td>총 결제금액</td>
+                                  <td><c:set var="allPrice" value="${sum+delivery}"/>${allPrice}원</td>
+                              </tr>
+                          </tbody>
+                      </table>
+                      <!--
+                      *************************************************************************************************************-->
 
-                                        <tr>
-                                            <td>총 결제금액</td>
-                                            <td><c:set var="allPrice" value="${sum+delivery}"/>${allPrice}원</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <!--
-                                *************************************************************************************************************-->
+                      <!-- 결제약관 동의 체크박스 추후 결제약관 동의 관련 order.js 파일에 추가 예정-->
+                      <div class="row form-group remember" style="margin-left:30px;">
+                          <input type="checkbox" id="agree-pay" required> 결제 및 이용약관에 동의합니다.
+                      </div>
 
-                                <!-- 결제약관 동의 체크박스 추후 결제약관 동의 관련 order.js 파일에 추가 예정-->
-                                <div class="row form-group remember" style="margin-left:30px;">
-                                    <input type="checkbox" id="agree-pay" required> 결제 및 이용약관에 동의합니다.
-                                </div>
-
-                                <!-- 구매확정 창으로 넘어가기 위한 버튼 -->
-                                <div class="form-group pay_btn_div">
-                                	<input type="hidden" name="allPrice" value="${allPrice}">
-                                    <button type="submit" class="btn btn-primary" id="pay-btn">결제하기</button>
-                                </div>
-
-                                </div>
-                            </div>
-</form>
-                        </div>
+                      <!-- 구매확정 창으로 넘어가기 위한 버튼 -->
+                      <div class="form-group pay_btn_div">
+                      	<input type="hidden" name="allPrice" value="${allPrice}">
+                        <button type="submit" class="btn btn-primary" id="pay-btn">결제하기</button>
+                      </div>
 
                     </div>
-
                 </div>
-
+							</form>
+            </div>
+        </div>
+    </div>
+</div>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

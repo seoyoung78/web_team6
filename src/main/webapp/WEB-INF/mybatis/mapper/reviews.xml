@@ -23,25 +23,28 @@
 		order by r.review_regdate desc			 
 	</select>
 	
-	<select id="selectReview" parameterType="int" resultType="review">
-		select review_no, order_no, product_no, user_id, review_content, review_regdate
-		from reviews
-		where review_no = #{reviewNo}
-	</select>
-	
-	<!-- <select id="selectByPage" parameterType="pager" resultType="reviews">
-		select rnum, review_no, order_no, product_no, user_id, review_content, review_regdate
+	<select id="selectByPage" resultType="review">
+		select rnum, reviewNo, orderNo, productNo, productName, userId, reviewContent, reviewRegdate
     from (
-        select rownum as rnum, order_no, product_no, user_id, review_content, review_regdate
+        select rownum as rnum, 
+        			 reviewNo, orderNo, productNo, productName, userId, reviewContent, reviewRegdate
         from (
-            select review_no, order_no, product_no, user_id, review_content, review_regdate
-            from reviews
+            select r.review_no as reviewNo, 
+									 r.order_no as orderNo,
+									 r.product_no as productNo, 
+									 p.product_name as productName, 
+									 r.user_id as userId, 
+									 r.review_content as reviewContent, 
+									 r.review_regdate as reviewRegdate
+            from reviews r, products p
+            where r.product_no = p.product_no		
+							and r.product_no = #{productNo}	
             order by review_regdate desc
         )
-        where rownum &lt;= #{endRowNo}
+        where rownum &lt;= #{pager.endRowNo}
     )
-    where rnum &gt;= #{startRowNo}
-	</select> -->
+    where rnum &gt;= #{pager.startRowNo}
+	</select>
 	
 	<delete id="deleteReview">
 		delete from reviews
@@ -51,7 +54,8 @@
 	<select id="count" resultType="int">
 		select count(*) 
 		from reviews r, products p
-		where r.product_no = p.product_no		
+		where r.product_no = p.product_no
+			and r.product_no = #{productNo}
 	</select>
 	
 </mapper>

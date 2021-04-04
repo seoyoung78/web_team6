@@ -24,6 +24,11 @@ public class ReviewsService {
 		return list;
 	}
 	
+	public List<Reviews> getReview(int productNo, Pager pager) {
+		List<Reviews> list = reviewsDao.selectByPage(productNo, pager);
+		return list;
+	}
+	
 	public void saveReview(String userId, int orderNo, int productNo, String reviewContent) {
 		reviewsDao.insert(userId, orderNo, productNo, reviewContent);
 	}
@@ -33,8 +38,8 @@ public class ReviewsService {
 		reviewsDao.deleteReview(reviewNo, userId);
 	}
 
-	/*public int getTotalRows(String userID) {
-		int rows = reviewsDao.count(userID);
+	public int getTotalRows(int productNo) {
+		int rows = reviewsDao.count(productNo);
 		return rows;
-	}*/
+	}
 }
